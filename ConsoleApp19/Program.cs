@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using log4net;
 using log4net.Config;
 
-namespace _5823
+namespace _9211
 {
     class Program
     {
         static void Main(string[] args)
         {
-
             Logger.InitLogger();
             Logger.Log.Info("Запуск программы.");
             try
@@ -20,6 +19,15 @@ namespace _5823
                 int M1 = 0; int M2 = 0; int M3A = 0; int M3B = 0;
                 Console.WriteLine("Введите длину цепочки: ");
                 int N = Convert.ToInt32(Console.ReadLine());
+                if (N > 2)
+                {
+                    Console.WriteLine("Длина цепочки равна " + N);
+                }
+                else
+                {  
+                    Console.WriteLine("Длина цепочки не может быть меньше 3х");
+                }
+             
                 Logger.Log.Info($"Prog: Получена длина цепочки, она есть {N}");
                 Console.WriteLine("Введите последовательность чисел, разделяя их клавишей Enter: ");
                 for (int i = 0; i < N; i++)
@@ -54,6 +62,25 @@ namespace _5823
             {
                 Logger.Log.Info("Конец программы.");
             }
+        }
+    }
+}
+namespace _9211
+{
+
+    public static class Logger
+    {
+        private static ILog log = LogManager.GetLogger("LOGGER");
+
+
+        public static ILog Log
+        {
+            get { return log; }
+        }
+
+        public static void InitLogger()
+        {
+            XmlConfigurator.Configure();
         }
     }
 }
